@@ -2,7 +2,6 @@ import requests
 import os
 import string
 from bs4 import BeautifulSoup
-import re
 
 class HeartWork:
   def __init__(self, base_url, episode_count):
@@ -36,9 +35,10 @@ class HeartWork:
       print('Downloading file:', mix[0])
       req = requests.get(mix[0], headers)
 
-      with open(os.path.join(path, mix[1]), 'w+') as f:
-        f.write(str(req.content))
+      with open(os.path.join(path, mix[1]), 'wb') as f:
+        f.write(req.content)
     print('Downloads complete.')
+
   def begin(self):
     self.__generate_urls()
     self.__download_files()
